@@ -174,6 +174,7 @@ def _score_and_log(
     except Skipped:
         result.msgs += "skipped\n"
     except BaseException as ex:
+        print(f"✘\n {type(ex)}: {str(ex)}\n {traceback.format_exc()}")
         result.msgs += f"✘\n {type(ex)}: {str(ex)}" f"\n {traceback.format_exc()}"
     finally:
         judge_log.entries.append(result)

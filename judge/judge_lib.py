@@ -100,6 +100,7 @@ def score_input(
             result.msgs += f"✔ [0 pts]"
         elif response != NotImplemented:
             response_circuit = cirq.Circuit(response)
+            print(f'Circuit:\n{response_circuit}')
 
             total_qubit_count = len(qs) + len(ancillae)
             assert (
@@ -146,6 +147,7 @@ def score_input(
         trace_distance = cirq.trace_distance_from_angle_list(
             np.angle(np.linalg.eigvals(u))
         )
+        print(f'Response:\n{response_unitary}\nExpected:\n{expected_unitary}')
         assert (
             trace_distance < 1e-4
         ), f"trace distance of input.conj().T @ response is {trace_distance} > 1e-4"
